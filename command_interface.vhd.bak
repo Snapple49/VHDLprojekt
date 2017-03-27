@@ -1,0 +1,25 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity control is
+
+	port 
+	(
+		clk_baud		: in std_logic;
+		clk_baud16	: in std_logic;
+		RX_in	      : in std_logic;
+		wrt_reg		: out std_logic
+	);
+
+end entity;
+
+architecture rtl of control is
+	signal reading : std_logic := '0';
+
+
+begin
+
+
+
+end rtl;
+
