@@ -1,5 +1,5 @@
 Flow report for command_interface
-Sat Mar 25 15:50:53 2017
+Mon Mar 27 11:33:15 2017
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -40,10 +40,10 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Flow Summary                                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Flow Status                        ; Successful - Sat Mar 25 15:50:53 2017           ;
+; Flow Status                        ; Successful - Mon Mar 27 11:33:15 2017           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; command_interface                               ;
-; Top-level Entity Name              ; command_interface                               ;
+; Top-level Entity Name              ; rs232                                           ;
 ; Family                             ; Cyclone II                                      ;
 ; Device                             ; EP2C35F672C6                                    ;
 ; Timing Models                      ; Final                                           ;
@@ -51,7 +51,7 @@ applicable agreement for further details.
 ;     Total combinational functions  ; 0                                               ;
 ;     Dedicated logic registers      ; 0                                               ;
 ; Total registers                    ; 0                                               ;
-; Total pins                         ; 4                                               ;
+; Total pins                         ; 2                                               ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 0                                               ;
 ; Embedded Multiplier 9-bit elements ; 0                                               ;
@@ -64,27 +64,28 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 03/25/2017 15:50:43 ;
+; Start date & time ; 03/27/2017 11:33:12 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; command_interface   ;
 +-------------------+---------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------+
-; Flow Non-Default Global Settings                                                                                     ;
-+-------------------------------------+---------------------------------+---------------+-------------+----------------+
-; Assignment Name                     ; Value                           ; Default Value ; Entity Name ; Section Id     ;
-+-------------------------------------+---------------------------------+---------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID               ; 114448683264104.149045344303884 ; --            ; --          ; --             ;
-; EDA_OUTPUT_DATA_FORMAT              ; Vhdl                            ; --            ; --          ; eda_simulation ;
-; EDA_SIMULATION_TOOL                 ; ModelSim-Altera (VHDL)          ; <None>        ; --          ; --             ;
-; MAX_CORE_JUNCTION_TEMP              ; 85                              ; --            ; --          ; --             ;
-; MIN_CORE_JUNCTION_TEMP              ; 0                               ; --            ; --          ; --             ;
-; PARTITION_COLOR                     ; 16764057                        ; --            ; --          ; Top            ;
-; PARTITION_FITTER_PRESERVATION_LEVEL ; PLACEMENT_AND_ROUTING           ; --            ; --          ; Top            ;
-; PARTITION_NETLIST_TYPE              ; SOURCE                          ; --            ; --          ; Top            ;
-; PROJECT_OUTPUT_DIRECTORY            ; output_files                    ; --            ; --          ; --             ;
-+-------------------------------------+---------------------------------+---------------+-------------+----------------+
++--------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                         ;
++-------------------------------------+---------------------------------+-------------------+-------------+----------------+
+; Assignment Name                     ; Value                           ; Default Value     ; Entity Name ; Section Id     ;
++-------------------------------------+---------------------------------+-------------------+-------------+----------------+
+; COMPILER_SIGNATURE_ID               ; 220777293347961.149060719214252 ; --                ; --          ; --             ;
+; EDA_OUTPUT_DATA_FORMAT              ; Vhdl                            ; --                ; --          ; eda_simulation ;
+; EDA_SIMULATION_TOOL                 ; ModelSim-Altera (VHDL)          ; <None>            ; --          ; --             ;
+; MAX_CORE_JUNCTION_TEMP              ; 85                              ; --                ; --          ; --             ;
+; MIN_CORE_JUNCTION_TEMP              ; 0                               ; --                ; --          ; --             ;
+; PARTITION_COLOR                     ; 16764057                        ; --                ; rs232       ; Top            ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; PLACEMENT_AND_ROUTING           ; --                ; rs232       ; Top            ;
+; PARTITION_NETLIST_TYPE              ; SOURCE                          ; --                ; rs232       ; Top            ;
+; PROJECT_OUTPUT_DIRECTORY            ; output_files                    ; --                ; --          ; --             ;
+; TOP_LEVEL_ENTITY                    ; rs232                           ; command_interface ; --          ; --             ;
++-------------------------------------+---------------------------------+-------------------+-------------+----------------+
 
 
 +--------------------------------------------------------------------------------------------------------------------------+
@@ -92,8 +93,8 @@ applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:08     ; 1.0                     ; 486 MB              ; 00:00:05                           ;
-; Total                ; 00:00:08     ; --                      ; --                  ; 00:00:05                           ;
+; Analysis & Synthesis ; 00:00:03     ; 1.0                     ; 487 MB              ; 00:00:02                           ;
+; Total                ; 00:00:03     ; --                      ; --                  ; 00:00:02                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -102,7 +103,7 @@ applicable agreement for further details.
 +----------------------+------------------+-----------+------------+----------------+
 ; Module Name          ; Machine Hostname ; OS Name   ; OS Version ; Processor type ;
 +----------------------+------------------+-----------+------------+----------------+
-; Analysis & Synthesis ; Mr_LaptopJr      ; Windows 7 ; 6.2        ; x86_64         ;
+; Analysis & Synthesis ; ANG-6k1101-24    ; Windows 7 ; 6.1        ; x86_64         ;
 +----------------------+------------------+-----------+------------+----------------+
 
 

@@ -1,0 +1,11 @@
+vendor_name = ModelSim
+source_file = 1, X:/Documents/VHDLprojekt/command_interface.vhd
+source_file = 1, X:/Documents/VHDLprojekt/rs232.bdf
+source_file = 1, X:/Documents/VHDLprojekt/db/command_interface.cbx.xml
+source_file = 1, c:/altera/13.0sp1/quartus/libraries/vhdl/ieee/prmtvs_b.vhd
+source_file = 1, c:/altera/13.0sp1/quartus/libraries/vhdl/ieee/prmtvs_p.vhd
+source_file = 1, c:/altera/13.0sp1/quartus/libraries/vhdl/ieee/timing_b.vhd
+source_file = 1, c:/altera/13.0sp1/quartus/libraries/vhdl/ieee/timing_p.vhd
+design_name = rs232
+instance = comp, \UART_RX~I\, UART_RX, rs232, 1
+instance = comp, \UART_TX~I\, UART_TX, rs232, 1

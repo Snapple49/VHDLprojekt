@@ -1,7 +1,5 @@
-|command_interface
-clk_baud => ~NO_FANOUT~
-clk_baud16 => ~NO_FANOUT~
-RX_in => ~NO_FANOUT~
-wrt_reg <= comb.DB_MAX_OUTPUT_PORT_TYPE
+|rs232
+UART_TX <= UART_RX.DB_MAX_OUTPUT_PORT_TYPE
+UART_RX => UART_TX.DATAIN
 
 
