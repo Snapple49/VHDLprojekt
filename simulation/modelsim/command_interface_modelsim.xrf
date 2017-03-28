@@ -1,7 +1,8 @@
 vendor_name = ModelSim
-source_file = 1, X:/Documents/VHDLprojekt/command_interface.vhd
-source_file = 1, X:/Documents/VHDLprojekt/rs232.bdf
-source_file = 1, X:/Documents/VHDLprojekt/db/command_interface.cbx.xml
+source_file = 1, E:/VHDL/Projekt/VHDLprojekt/command_interface.vhd
+source_file = 1, E:/VHDL/Projekt/VHDLprojekt/rs232.bdf
+source_file = 1, E:/VHDL/Projekt/VHDLprojekt/baud_generator.vhd
+source_file = 1, E:/VHDL/Projekt/VHDLprojekt/db/command_interface.cbx.xml
 source_file = 1, c:/altera/13.0sp1/quartus/libraries/vhdl/ieee/prmtvs_b.vhd
 source_file = 1, c:/altera/13.0sp1/quartus/libraries/vhdl/ieee/prmtvs_p.vhd
 source_file = 1, c:/altera/13.0sp1/quartus/libraries/vhdl/ieee/timing_b.vhd

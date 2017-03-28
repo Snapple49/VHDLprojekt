@@ -1,5 +1,5 @@
 TimeQuest Timing Analyzer report for command_interface
-Mon Mar 27 10:28:14 2017
+Tue Mar 28 14:10:59 2017
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -74,7 +74,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+--------+
 ; Processors                 ; Number ;
 +----------------------------+--------+
-; Number detected on machine ; 8      ;
+; Number detected on machine ; 4      ;
 ; Maximum allowed            ; 1      ;
 +----------------------------+--------+
 
@@ -253,11 +253,9 @@ No dedicated SERDES Receiver circuitry present in device or used in design
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit TimeQuest Timing Analyzer
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Mon Mar 27 10:28:12 2017
+    Info: Processing started: Tue Mar 28 14:10:56 2017
 Info: Command: quartus_sta command_interface -c command_interface
 Info: qsta_default_script.tcl version: #1
-Warning (292000): FLEXlm software error: Future license file format or misspelling in license file.  The file was issued for a later version of FLEXnet Licensing than this  program understands. Feature:       quartus License text:  ONE_TS_OK SIGN="10F6 6199 4B11 8355 E620 C542 655F D71A 6B5A 5BEE 04DD A7A0 0526 E56E BE33 1EC9 91C0 2975 1547 AD30 3A1A 7B2B B4E0 48EA D930 040B 5313 221A B131 8627" License path:  C:\Program Files\StruSoft\FEM-Design 15 Educational\license.lic FLEXnet Licensing error:-90,313 For further information, refer to the FLEXnet Licensing End User Guide, available at "www.macrovision.com".
-Warning (292000): FLEXlm software error: Future license file format or misspelling in license file.  The file was issued for a later version of FLEXnet Licensing than this  program understands. Feature:       quartus_talkback License text:  ONE_TS_OK SIGN="10F6 6199 4B11 8355 E620 C542 655F D71A 6B5A 5BEE 04DD A7A0 0526 E56E BE33 1EC9 91C0 2975 1547 AD30 3A1A 7B2B B4E0 48EA D930 040B 5313 221A B131 8627" License path:  C:\Program Files\StruSoft\FEM-Design 15 Educational\license.lic FLEXnet Licensing error:-90,313 For further information, refer to the FLEXnet Licensing End User Guide, available at "www.macrovision.com".
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (21077): Low junction temperature is 0 degrees C
 Info (21077): High junction temperature is 85 degrees C
@@ -287,10 +285,10 @@ Info (332140): No Minimum Pulse Width paths to report
 Info (332001): The selected device family is not supported by the report_metastability command.
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
-Info: Quartus II 64-Bit TimeQuest Timing Analyzer was successful. 0 errors, 20 warnings
-    Info: Peak virtual memory: 391 megabytes
-    Info: Processing ended: Mon Mar 27 10:28:14 2017
-    Info: Elapsed time: 00:00:02
-    Info: Total CPU time (on all processors): 00:00:01
+Info: Quartus II 64-Bit TimeQuest Timing Analyzer was successful. 0 errors, 4 warnings
+    Info: Peak virtual memory: 393 megabytes
+    Info: Processing ended: Tue Mar 28 14:10:59 2017
+    Info: Elapsed time: 00:00:03
+    Info: Total CPU time (on all processors): 00:00:03
 
 
