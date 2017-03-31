@@ -20,10 +20,12 @@ architecture behavior of clock_generator is
 
 	signal clk_out : std_logic := '0';
 	signal half_rate : std_logic_vector (20 downto 0);
+	signal half_rate16: std_logic_vector (20 downto 0);
 	signal ctr : std_logic_vector (20 downto 0) := "000000000000000000000";
 
 begin
 	half_rate <= '0' & conv_std_logic_vector(baudrate, 21)(20 downto 1);
+	half_rate16 <= "0000" & half_rate(20 downto 4);
 	
 	process (clk_source, rst)
 	begin
@@ -34,12 +36,14 @@ begin
 			ctr <= ctr + 1;
 			case freq_sel is
 			when '0' => -- baud
-				if (ctr = half_rate-1) then
+				if (ctr >= half_rate-1) then
 					clk_out <= not clk_out;
+					ctr <= "000000000000000000000";
 				end if;	
 			when '1' => -- baud16
-				if (ctr = (half_rate(16 downto 0)-1 & "0000")) then
+				if (ctr >= (half_rate16-1)) then
 					clk_out <= not clk_out;
+					ctr <= "000000000000000000000";
 				end if;
 			when others =>
 		end case;

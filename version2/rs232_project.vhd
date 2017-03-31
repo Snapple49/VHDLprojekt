@@ -54,7 +54,7 @@ UART_TX <= UART_RX;
 
 
 b2v_inst : clock_generator
-GENERIC MAP(baudrate => 9600
+GENERIC MAP(baudrate => 115200
 			)
 PORT MAP(clk_source => pin_name1,
 		 freq_sel => pin_name2,
