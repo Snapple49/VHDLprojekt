@@ -14,7 +14,7 @@
 
 -- PROGRAM		"Quartus II 64-Bit"
 -- VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
--- CREATED		"Thu Mar 30 11:08:44 2017"
+-- CREATED		"Sun Apr 02 16:45:26 2017"
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all; 
@@ -25,12 +25,12 @@ ENTITY rs232_project IS
 	PORT
 	(
 		UART_RX :  IN  STD_LOGIC;
-		pin_name1 :  IN  STD_LOGIC;
 		pin_name2 :  IN  STD_LOGIC;
-		pin_name3 :  IN  STD_LOGIC;
+		pin_name5 :  IN  STD_LOGIC;
+		pin_name6 :  IN  STD_LOGIC;
+		pin_name1 :  IN  STD_LOGIC;
 		UART_TX :  OUT  STD_LOGIC;
-		pin_name4 :  OUT  STD_LOGIC;
-		pin_name5 :  OUT  STD_LOGIC
+		sr_out :  OUT  STD_LOGIC_VECTOR(7 DOWNTO 0)
 	);
 END rs232_project;
 
@@ -46,6 +46,31 @@ GENERIC (baudrate : INTEGER
 	);
 END COMPONENT;
 
+COMPONENT controller
+	PORT(clk_baud : IN STD_LOGIC;
+		 clk_baud16 : IN STD_LOGIC;
+		 RX_in : IN STD_LOGIC;
+		 clk_rst : OUT STD_LOGIC;
+		 clk_rst16 : OUT STD_LOGIC;
+		 wrt_reg : OUT STD_LOGIC
+	);
+END COMPONENT;
+
+COMPONENT s_reg
+GENERIC (NUM_STAGES : INTEGER
+			);
+	PORT(clk : IN STD_LOGIC;
+		 enable : IN STD_LOGIC;
+		 sr_in : IN STD_LOGIC;
+		 sr_out : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+	);
+END COMPONENT;
+
+SIGNAL	clk_baud :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_0 :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_1 :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_2 :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_3 :  STD_LOGIC;
 
 
 BEGIN 
@@ -54,11 +79,39 @@ UART_TX <= UART_RX;
 
 
 b2v_inst : clock_generator
-GENERIC MAP(baudrate => 115200
+GENERIC MAP(baudrate => 5208
+			)
+PORT MAP(clk_source => pin_name5,
+		 freq_sel => pin_name6,
+		 rst => SYNTHESIZED_WIRE_0,
+		 clk_baud => clk_baud);
+
+
+b2v_inst3 : controller
+PORT MAP(clk_baud => clk_baud,
+		 clk_baud16 => SYNTHESIZED_WIRE_1,
+		 RX_in => UART_RX,
+		 clk_rst => SYNTHESIZED_WIRE_0,
+		 clk_rst16 => SYNTHESIZED_WIRE_3,
+		 wrt_reg => SYNTHESIZED_WIRE_2);
+
+
+b2v_inst4 : s_reg
+GENERIC MAP(NUM_STAGES => 8
+			)
+PORT MAP(clk => clk_baud,
+		 enable => SYNTHESIZED_WIRE_2,
+		 sr_in => UART_RX,
+		 sr_out => sr_out);
+
+
+b2v_inst5 : clock_generator
+GENERIC MAP(baudrate => 5208
 			)
 PORT MAP(clk_source => pin_name1,
 		 freq_sel => pin_name2,
-		 rst => pin_name3,
-		 clk_baud => pin_name4
-);
+		 rst => SYNTHESIZED_WIRE_3,
+		 clk_baud => SYNTHESIZED_WIRE_1);
+
+
 END bdf_type;
