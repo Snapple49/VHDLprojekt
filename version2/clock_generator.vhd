@@ -4,9 +4,10 @@ use ieee.std_logic_arith.all;
 use ieee.std_logic_unsigned.all;
 
 entity clock_generator is
-
+	--- 50MHz/9600 = 5208
+	--- 50MHz/115200 = 434
 	generic(
-		baudrate : integer := 9600
+		baudrate : integer := 5208
 	);
 
 	port (
