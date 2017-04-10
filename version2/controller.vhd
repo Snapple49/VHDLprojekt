@@ -20,7 +20,6 @@ architecture rtl of controller is
 signal reading : std_logic := '0';
 signal counter8a : std_logic_vector(2 downto 0) := "000";
 signal counter8b : std_logic_vector(3 downto 0) := "0000";
-signal counter16 : std_logic_vector(3 downto 0) := "0000";
 
 begin
 	process(clk_baud16, reading)
