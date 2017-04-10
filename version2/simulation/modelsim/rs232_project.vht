@@ -17,7 +17,7 @@
 -- suit user's needs .Comments are provided in each section to help the user  
 -- fill out necessary details.                                                
 -- ***************************************************************************
--- Generated on "04/06/2017 16:30:47"
+-- Generated on "04/10/2017 13:48:31"
                                                             
 -- Vhdl Test Bench template for design  :  rs232_project
 -- 
@@ -32,19 +32,15 @@ END rs232_project_vhd_tst;
 ARCHITECTURE rs232_project_arch OF rs232_project_vhd_tst IS
 -- constants                                                 
 -- signals                                                   
-SIGNAL pin_name1 : STD_LOGIC;
-SIGNAL pin_name2 : STD_LOGIC;
-SIGNAL pin_name5 : STD_LOGIC;
-SIGNAL pin_name6 : STD_LOGIC;
+SIGNAL freq_select : STD_LOGIC;
+SIGNAL source_clock : STD_LOGIC;
 SIGNAL sr_out : STD_LOGIC_VECTOR(7 DOWNTO 0);
 SIGNAL UART_RX : STD_LOGIC;
 SIGNAL UART_TX : STD_LOGIC;
 COMPONENT rs232_project
 	PORT (
-	pin_name1 : IN STD_LOGIC;
-	pin_name2 : IN STD_LOGIC;
-	pin_name5 : IN STD_LOGIC;
-	pin_name6 : IN STD_LOGIC;
+	freq_select : IN STD_LOGIC;
+	source_clock : IN STD_LOGIC;
 	sr_out : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
 	UART_RX : IN STD_LOGIC;
 	UART_TX : OUT STD_LOGIC
@@ -54,10 +50,8 @@ BEGIN
 	i1 : rs232_project
 	PORT MAP (
 -- list connections between master ports and signals
-	pin_name1 => pin_name1,
-	pin_name2 => pin_name2,
-	pin_name5 => pin_name5,
-	pin_name6 => pin_name6,
+	freq_select => freq_select,
+	source_clock => source_clock,
 	sr_out => sr_out,
 	UART_RX => UART_RX,
 	UART_TX => UART_TX
@@ -75,6 +69,5 @@ always : PROCESS
 BEGIN                                                         
         -- code executes for every event on sensitivity list  
 WAIT;                                                        
-END PROCESS always;
-pin_name1 <= not(pin_name1) after 10 ns;                                          
+END PROCESS always;                                          
 END rs232_project_arch;
