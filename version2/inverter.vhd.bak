@@ -1,0 +1,24 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;
+
+entity inverter is
+	
+	generic(constant size : natural);
+	
+	port(
+		in input : std_logic_vector (7 downto 0);
+		out output : std_logic_vector (7 downto 0)
+	);
+	
+end entity;
+
+architecture behavior of inverter is
+
+	
+	
+begin
+	
+	
+end behavior;

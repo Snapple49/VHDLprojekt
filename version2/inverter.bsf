@@ -20,8 +20,8 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.1"))
 (symbol
-	(rect 16 16 200 128)
-	(text "s_reg" (rect 5 0 28 12)(font "Arial" ))
+	(rect 16 16 232 128)
+	(text "inverter" (rect 5 0 35 12)(font "Arial" ))
 	(text "inst" (rect 8 96 20 108)(font "Arial" ))
 	(port
 		(pt 0 32)
@@ -40,16 +40,16 @@ applicable agreement for further details.
 	(port
 		(pt 0 64)
 		(input)
-		(text "sr_in" (rect 0 0 20 12)(font "Arial" ))
-		(text "sr_in" (rect 21 59 41 71)(font "Arial" ))
-		(line (pt 0 64)(pt 16 64)(line_width 1))
+		(text "input[size-1..0]" (rect 0 0 53 12)(font "Arial" ))
+		(text "input[size-1..0]" (rect 21 59 74 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64)(line_width 3))
 	)
 	(port
-		(pt 184 32)
+		(pt 216 32)
 		(output)
-		(text "sr_out[size-1..0]" (rect 0 0 61 12)(font "Arial" ))
-		(text "sr_out[size-1..0]" (rect 102 27 163 39)(font "Arial" ))
-		(line (pt 184 32)(pt 168 32)(line_width 3))
+		(text "output[size-1..0]" (rect 0 0 59 12)(font "Arial" ))
+		(text "output[size-1..0]" (rect 136 27 195 39)(font "Arial" ))
+		(line (pt 216 32)(pt 200 32)(line_width 3))
 	)
 	(parameter
 		"size"
@@ -57,7 +57,7 @@ applicable agreement for further details.
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
-		(rectangle (rect 16 16 168 96)(line_width 1))
+		(rectangle (rect 16 16 200 96)(line_width 1))
 	)
-	(annotation_block (parameter)(rect 200 -64 300 16))
+	(annotation_block (parameter)(rect 232 -64 332 16))
 )
