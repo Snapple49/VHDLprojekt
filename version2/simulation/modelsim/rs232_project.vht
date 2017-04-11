@@ -65,7 +65,8 @@ BEGIN
 init : PROCESS                                               
 -- variable declarations                                     
 BEGIN
-	UART_RX <= '0' after 10000 ns; -- start bit
+	wait for 10000 ns;
+	UART_RX <= '0'; -- start bit
 	wait for 104166 ns;
 	UART_RX <= '1'; 
 	wait for 104166 ns;
