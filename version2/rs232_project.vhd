@@ -14,7 +14,7 @@
 
 -- PROGRAM		"Quartus II 64-Bit"
 -- VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
--- CREATED		"Tue Apr 11 15:49:36 2017"
+-- CREATED		"Tue Apr 11 16:27:51 2017"
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all; 
@@ -29,7 +29,6 @@ ENTITY rs232_project IS
 		freq_select :  IN  STD_LOGIC;
 		inv_enable :  IN  STD_LOGIC;
 		UART_TX :  OUT  STD_LOGIC;
-		fast_clock :  OUT  STD_LOGIC;
 		inv_out :  OUT  STD_LOGIC_VECTOR(7 DOWNTO 0);
 		sr_out :  OUT  STD_LOGIC_VECTOR(7 DOWNTO 0)
 	);
@@ -84,7 +83,6 @@ SIGNAL	SYNTHESIZED_WIRE_2 :  STD_LOGIC;
 SIGNAL	SYNTHESIZED_WIRE_3 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_4 :  STD_LOGIC;
 SIGNAL	SYNTHESIZED_WIRE_5 :  STD_LOGIC;
-SIGNAL	SYNTHESIZED_WIRE_8 :  STD_LOGIC;
 
 
 BEGIN 
@@ -140,19 +138,6 @@ PORT MAP(clk_baud => clk_baud,
 		 clk_rst => SYNTHESIZED_WIRE_2,
 		 clk_rst16 => SYNTHESIZED_WIRE_0,
 		 wrt_reg => SYNTHESIZED_WIRE_4);
-
-
-b2v_inst4 : clock_generator
-GENERIC MAP(baudrate => 80
-			)
-PORT MAP(clk_source => source_clock,
-		 freq_sel => SYNTHESIZED_WIRE_8,
-		 rst => SYNTHESIZED_WIRE_8,
-		 clk_baud => fast_clock);
-
-
-SYNTHESIZED_WIRE_8 <= NOT(freq_select);
-
 
 
 END bdf_type;
