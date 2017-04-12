@@ -42,7 +42,6 @@ SIGNAL UART_RX : STD_LOGIC := '1';
 SIGNAL UART_TX : STD_LOGIC;
 COMPONENT rs232_project
 	PORT (
-	fast_clock : OUT STD_LOGIC;
 	freq_select : IN STD_LOGIC;
 	inv_enable : IN STD_LOGIC;
 	inv_out : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
@@ -56,7 +55,6 @@ BEGIN
 	i1 : rs232_project
 	PORT MAP (
 -- list connections between master ports and signals
-	fast_clock => fast_clock,
 	freq_select => freq_select,
 	inv_enable => inv_enable,
 	inv_out => inv_out,
