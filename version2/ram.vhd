@@ -10,7 +10,7 @@ entity dual_port_ram is
 
 	port 
 	(
-		rstn		: in std_logic;
+		rstn		: in std_logic := '0';
 		clk, we	: in std_logic;
 		data_in 	: in std_logic_vector((DATA_WIDTH-1) downto 0);
 		address	: in std_logic_vector((ADDR_WIDTH-1) downto 0);

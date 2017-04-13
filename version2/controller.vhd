@@ -12,7 +12,7 @@ entity controller is
 		clk_rst		: out std_logic := '1';
 		clk_rst16 	: out std_logic := '1';
 		wrt_reg		: out std_logic := '0';
-		rst			: in std_logic
+		rst			: in std_logic := '1'
 	);
 
 end entity;

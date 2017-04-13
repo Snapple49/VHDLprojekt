@@ -6,7 +6,7 @@ entity interpreter is
 	generic
 	(
 		--- baud rate här?
-		size : natural := 8;
+		size : natural := 8
 	);
 	
 
@@ -28,7 +28,7 @@ signal c_state : state := IDLE;
 begin
 	process(clk, rst)
 	begin
-		if (rst = 0) then
+		if (rst = '0') then
 			c_state <= IDLE;
 		elsif rising_edge(clk) then
 			case c_state is

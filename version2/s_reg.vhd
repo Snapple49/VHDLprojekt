@@ -14,8 +14,9 @@ entity s_reg is
 		clk		: in std_logic;
 		enable	: in std_logic;
 		sr_in	   : in std_logic;
-		sr_out	: out std_logic_vector((size-1) downto 0);
-		rst 		: in std_logic
+		sr_out	: out std_logic;
+		sr_par_out	: out std_logic_vector((size-1) downto 0);
+		rst 		: in std_logic := '0'
 	);
 
 end entity;
@@ -43,8 +44,7 @@ begin
 			end if;
 		end if;
 	end process;
-
-	-- Capture the data from the last stage, before it is lost
-	sr_out <= sr;
+	sr_out <= sr(size-1);
+	sr_par_out <= sr;
 
 end rtl;
