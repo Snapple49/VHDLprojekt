@@ -38,6 +38,7 @@ begin
 				when IDLE =>
 					--start ??
 				when LISTENING =>
+					ctr <= '1';
 					case (data_in) is
 						--A
 						when "01000001" =>
