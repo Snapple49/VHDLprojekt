@@ -12,8 +12,8 @@ entity dual_port_ram is
 	(
 		rstn		: in std_logic;
 		clk, we	: in std_logic;
-		address	: in std_logic_vector((ADDR_WIDTH-1) downto 0);
 		data_in 	: in std_logic_vector((DATA_WIDTH-1) downto 0);
+		address	: in std_logic_vector((ADDR_WIDTH-1) downto 0);
 		data_out	: out std_logic_vector((DATA_WIDTH -1) downto 0)
 	);
 	
