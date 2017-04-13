@@ -17,7 +17,7 @@
 -- suit user's needs .Comments are provided in each section to help the user  
 -- fill out necessary details.                                                
 -- ***************************************************************************
--- Generated on "04/13/2017 13:15:55"
+-- Generated on "04/13/2017 16:15:45"
                                                             
 -- Vhdl Test Bench template for design  :  rs232_project
 -- 
@@ -33,12 +33,13 @@ ARCHITECTURE rs232_project_arch OF rs232_project_vhd_tst IS
 -- constants                                                 
 -- signals                                                   
 SIGNAL freq_select : STD_LOGIC := '1';
-SIGNAL inv_enable : STD_LOGIC := '0';
+SIGNAL inv_enable : STD_LOGIC := '1';
 SIGNAL inv_out : STD_LOGIC_VECTOR(7 DOWNTO 0);
 SIGNAL reset_all : STD_LOGIC := '0';
 SIGNAL source_clock : STD_LOGIC := '0';
 SIGNAL sr_out : STD_LOGIC_VECTOR(7 DOWNTO 0);
 SIGNAL UART_RX : STD_LOGIC := '1';
+SIGNAL UART_TX : STD_LOGIC;
 COMPONENT rs232_project
 	PORT (
 	freq_select : IN STD_LOGIC;
@@ -47,7 +48,8 @@ COMPONENT rs232_project
 	reset_all : IN STD_LOGIC;
 	source_clock : IN STD_LOGIC;
 	sr_out : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
-	UART_RX : IN STD_LOGIC
+	UART_RX : IN STD_LOGIC;
+	UART_TX : OUT STD_LOGIC
 	);
 END COMPONENT;
 BEGIN
@@ -60,7 +62,8 @@ BEGIN
 	reset_all => reset_all,
 	source_clock => source_clock,
 	sr_out => sr_out,
-	UART_RX => UART_RX
+	UART_RX => UART_RX,
+	UART_TX => UART_TX
 	);
 init : PROCESS                                               
 -- variable declarations                                     
@@ -73,7 +76,6 @@ always : PROCESS
 -- (        )                                                 
 -- variable declarations                                      
 BEGIN                                                         
-        -- code executes for every event on sensitivity list  
 	wait for 10000 ns;
 	UART_RX <= '0'; -- start bit
 	wait for 104166 ns;
@@ -97,5 +99,5 @@ BEGIN
 WAIT;                                                        
 END PROCESS always;
 reset_all <= '1' after 100 ns;
-source_clock <= not(source_clock) after 10 ns;                                          
+source_clock <= not(source_clock) after 10 ns;                                        
 END rs232_project_arch;
