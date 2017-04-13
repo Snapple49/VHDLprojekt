@@ -21,7 +21,7 @@ architecture behavior of inverter is
 	signal zero : std_logic_vector ((size-1) downto 0);
 	
 begin
-	zero <= conv_std_logic_vector(0, size);
+	--zero <= conv_std_logic_vector(0, size);
 	process
 		(clk)
 	begin
@@ -30,7 +30,7 @@ begin
 				output(i) <= input ((size-1)-i);
 			end loop;
 		elsif (enable = '0') then
-			output <= zero;
+			output <= (others => '0');
 		end if;
 	end process;
 end behavior;

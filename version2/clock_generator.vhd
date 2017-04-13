@@ -30,7 +30,7 @@ begin
 	
 	process (clk_source, rst)
 	begin
-		if (rst = '1') then
+		if (rst = '0') then
 			ctr <= "000000000000000000000";
 			clk_out <= '0';
 		elsif rising_edge(clk_source) then
