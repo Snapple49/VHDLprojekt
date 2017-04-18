@@ -12,7 +12,8 @@ entity controller is
 		clk_rst		: out std_logic := '1';
 		clk_rst16 	: out std_logic := '1';
 		wrt_reg		: out std_logic := '0';
-		rst			: in std_logic := '1'
+		rst			: in std_logic := '1';
+		data_rdy		: out std_logic := '0'
 	);
 
 end entity;
@@ -26,8 +27,8 @@ signal counter_rd : std_logic_vector(3 downto 0) := "0000";
 signal c_state : state;
 signal state_clk : std_logic;
 signal freq : std_logic := '0'; -- 0=baud16, 1 = baud
-begin
 
+begin
 	process (state_clk, rst)
 	begin
 		if (rst = '0') then
@@ -37,6 +38,7 @@ begin
 			counter_rd <= "0000";
 			wrt_reg <= '0';
 			c_state <= idle;
+			data_rdy <= '0';
 
 		elsif rising_edge(state_clk) then
 		
@@ -54,6 +56,7 @@ begin
 						wrt_reg <= '0';
 						counter_rd <= "0000";
 						freq <= '0';
+						data_rdy <= '1';
 						c_state <= waiting;
 					else
 						c_state <= reading;
@@ -61,7 +64,7 @@ begin
 					
 
 				when waiting =>
-					
+					data_rdy <= '0';
 					clk_rst16 <= '1';
 					clk_rst <= '0';
 					freq <= '0';

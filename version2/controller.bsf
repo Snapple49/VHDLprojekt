@@ -72,6 +72,13 @@ applicable agreement for further details.
 		(text "wrt_reg" (rect 133 59 163 71)(font "Arial" ))
 		(line (pt 184 64)(pt 168 64)(line_width 1))
 	)
+	(port
+		(pt 184 80)
+		(output)
+		(text "data_rdy" (rect 0 0 36 12)(font "Arial" ))
+		(text "data_rdy" (rect 127 75 163 87)(font "Arial" ))
+		(line (pt 184 80)(pt 168 80)(line_width 1))
+	)
 	(drawing
 		(rectangle (rect 16 16 168 96)(line_width 1))
 	)

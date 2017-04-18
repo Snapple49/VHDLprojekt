@@ -414,6 +414,13 @@ applicable agreement for further details.
 		(text "wrt_reg" (rect 134 59 163 71)(font "Arial" ))
 		(line (pt 184 64)(pt 168 64))
 	)
+	(port
+		(pt 184 80)
+		(output)
+		(text "data_rdy" (rect 0 0 43 12)(font "Arial" ))
+		(text "data_rdy" (rect 127 75 163 87)(font "Arial" ))
+		(line (pt 184 80)(pt 168 80))
+	)
 	(drawing
 		(rectangle (rect 16 16 168 96))
 	)
@@ -610,6 +617,11 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
+	(text "reset_all" (rect 554 328 595 340)(font "Arial" ))
+	(pt 568 344)
+	(pt 616 344)
+)
+(connector
 	(pt 216 592)
 	(pt 224 592)
 )
@@ -648,11 +660,6 @@ applicable agreement for further details.
 (connector
 	(pt 224 632)
 	(pt 248 632)
-)
-(connector
-	(text "reset_all" (rect 554 328 595 340)(font "Arial" ))
-	(pt 568 344)
-	(pt 616 344)
 )
 (junction (pt 536 376))
 (junction (pt 600 296))

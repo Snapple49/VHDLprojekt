@@ -14,7 +14,7 @@
 
 -- PROGRAM		"Quartus II 64-Bit"
 -- VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
--- CREATED		"Thu Apr 13 16:43:02 2017"
+-- CREATED		"Tue Apr 18 14:42:19 2017"
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all; 
@@ -64,7 +64,8 @@ COMPONENT controller
 		 rst : IN STD_LOGIC;
 		 clk_rst : OUT STD_LOGIC;
 		 clk_rst16 : OUT STD_LOGIC;
-		 wrt_reg : OUT STD_LOGIC
+		 wrt_reg : OUT STD_LOGIC;
+		 data_rdy : OUT STD_LOGIC
 	);
 END COMPONENT;
 
