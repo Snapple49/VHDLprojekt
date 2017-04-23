@@ -20,8 +20,8 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.1"))
 (symbol
-	(rect 16 16 312 160)
-	(text "dual_port_ram" (rect 5 0 64 12)(font "Arial" ))
+	(rect 16 16 264 160)
+	(text "interpreter" (rect 5 0 45 12)(font "Arial" ))
 	(text "inst" (rect 8 128 20 140)(font "Arial" ))
 	(port
 		(pt 0 32)
@@ -33,50 +33,66 @@ applicable agreement for further details.
 	(port
 		(pt 0 48)
 		(input)
-		(text "rstn" (rect 0 0 15 12)(font "Arial" ))
-		(text "rstn" (rect 21 43 36 55)(font "Arial" ))
+		(text "rst" (rect 0 0 10 12)(font "Arial" ))
+		(text "rst" (rect 21 43 31 55)(font "Arial" ))
 		(line (pt 0 48)(pt 16 48)(line_width 1))
 	)
 	(port
 		(pt 0 64)
 		(input)
-		(text "we" (rect 0 0 10 12)(font "Arial" ))
-		(text "we" (rect 21 59 31 71)(font "Arial" ))
+		(text "RX_ready" (rect 0 0 43 12)(font "Arial" ))
+		(text "RX_ready" (rect 21 59 64 71)(font "Arial" ))
 		(line (pt 0 64)(pt 16 64)(line_width 1))
 	)
 	(port
 		(pt 0 80)
 		(input)
-		(text "data_in[data_width-1..0]" (rect 0 0 90 12)(font "Arial" ))
-		(text "data_in[data_width-1..0]" (rect 21 75 111 87)(font "Arial" ))
+		(text "data_in[size-1..0]" (rect 0 0 63 12)(font "Arial" ))
+		(text "data_in[size-1..0]" (rect 21 75 84 87)(font "Arial" ))
 		(line (pt 0 80)(pt 16 80)(line_width 3))
 	)
 	(port
-		(pt 0 96)
-		(input)
-		(text "address[addr_width-1..0]" (rect 0 0 95 12)(font "Arial" ))
-		(text "address[addr_width-1..0]" (rect 21 91 116 103)(font "Arial" ))
-		(line (pt 0 96)(pt 16 96)(line_width 3))
+		(pt 248 32)
+		(output)
+		(text "data_out[size-1..0]" (rect 0 0 69 12)(font "Arial" ))
+		(text "data_out[size-1..0]" (rect 158 27 227 39)(font "Arial" ))
+		(line (pt 248 32)(pt 232 32)(line_width 3))
 	)
 	(port
-		(pt 296 32)
+		(pt 248 48)
 		(output)
-		(text "data_out[data_width-1..0]" (rect 0 0 96 12)(font "Arial" ))
-		(text "data_out[data_width-1..0]" (rect 179 27 275 39)(font "Arial" ))
-		(line (pt 296 32)(pt 280 32)(line_width 3))
+		(text "address_out[size-1..0]" (rect 0 0 84 12)(font "Arial" ))
+		(text "address_out[size-1..0]" (rect 143 43 227 55)(font "Arial" ))
+		(line (pt 248 48)(pt 232 48)(line_width 3))
+	)
+	(port
+		(pt 248 64)
+		(output)
+		(text "da" (rect 0 0 9 12)(font "Arial" ))
+		(text "da" (rect 218 59 227 71)(font "Arial" ))
+		(line (pt 248 64)(pt 232 64)(line_width 1))
+	)
+	(port
+		(pt 248 80)
+		(output)
+		(text "we" (rect 0 0 10 12)(font "Arial" ))
+		(text "we" (rect 217 75 227 87)(font "Arial" ))
+		(line (pt 248 80)(pt 232 80)(line_width 1))
+	)
+	(port
+		(pt 248 96)
+		(output)
+		(text "TX_enable" (rect 0 0 42 12)(font "Arial" ))
+		(text "TX_enable" (rect 185 91 227 103)(font "Arial" ))
+		(line (pt 248 96)(pt 232 96)(line_width 1))
 	)
 	(parameter
-		"DATA_WIDTH"
-		"8"
-		""
-		(type "PARAMETER_SIGNED_DEC")	)
-	(parameter
-		"ADDR_WIDTH"
+		"size"
 		"8"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
-		(rectangle (rect 16 16 280 128)(line_width 1))
+		(rectangle (rect 16 16 232 128)(line_width 1))
 	)
-	(annotation_block (parameter)(rect 312 -64 412 16))
+	(annotation_block (parameter)(rect 264 -64 364 16))
 )
