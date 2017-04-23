@@ -14,7 +14,7 @@
 
 -- PROGRAM		"Quartus II 64-Bit"
 -- VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
--- CREATED		"Sun Apr 23 15:43:33 2017"
+-- CREATED		"Sun Apr 23 17:33:15 2017"
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all; 
@@ -24,16 +24,37 @@ LIBRARY work;
 ENTITY mem_component IS 
 	PORT
 	(
-		clk :  IN  STD_LOGIC;
 		rst :  IN  STD_LOGIC;
 		RX_ready :  IN  STD_LOGIC;
 		source_clk :  IN  STD_LOGIC;
+		freq_sel :  IN  STD_LOGIC;
 		data_in :  IN  STD_LOGIC_VECTOR(7 DOWNTO 0);
 		data_out :  OUT  STD_LOGIC_VECTOR(7 DOWNTO 0)
 	);
 END mem_component;
 
 ARCHITECTURE bdf_type OF mem_component IS 
+
+COMPONENT d_reg
+GENERIC (size : INTEGER
+			);
+	PORT(clk : IN STD_LOGIC;
+		 rst : IN STD_LOGIC;
+		 load : IN STD_LOGIC;
+		 data_in : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+		 data_out : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+	);
+END COMPONENT;
+
+COMPONENT clock_generator
+GENERIC (baudrate : INTEGER
+			);
+	PORT(clk_source : IN STD_LOGIC;
+		 freq_sel : IN STD_LOGIC;
+		 rst : IN STD_LOGIC;
+		 clk_baud : OUT STD_LOGIC
+	);
+END COMPONENT;
 
 COMPONENT dual_port_ram
 GENERIC (ADDR_WIDTH : INTEGER;
@@ -43,17 +64,6 @@ GENERIC (ADDR_WIDTH : INTEGER;
 		 rstn : IN STD_LOGIC;
 		 we : IN STD_LOGIC;
 		 address : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
-		 data_in : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
-		 data_out : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
-	);
-END COMPONENT;
-
-COMPONENT d_reg
-GENERIC (size : INTEGER
-			);
-	PORT(clk : IN STD_LOGIC;
-		 rst : IN STD_LOGIC;
-		 load : IN STD_LOGIC;
 		 data_in : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
 		 data_out : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
 	);
@@ -77,10 +87,10 @@ END COMPONENT;
 SIGNAL	baud_clk :  STD_LOGIC;
 SIGNAL	da :  STD_LOGIC;
 SIGNAL	we :  STD_LOGIC;
-SIGNAL	SYNTHESIZED_WIRE_0 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_0 :  STD_LOGIC;
 SIGNAL	SYNTHESIZED_WIRE_1 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_2 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
-SIGNAL	SYNTHESIZED_WIRE_3 :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_3 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_4 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
 
 
@@ -88,43 +98,53 @@ BEGIN
 
 
 
-b2v_inst : dual_port_ram
-GENERIC MAP(ADDR_WIDTH => 8,
-			DATA_WIDTH => 8
+b2v_address : d_reg
+GENERIC MAP(size => 8
 			)
-PORT MAP(clk => source_clk,
-		 rstn => rst,
-		 we => we,
-		 address => SYNTHESIZED_WIRE_0,
+PORT MAP(clk => baud_clk,
+		 rst => rst,
+		 load => SYNTHESIZED_WIRE_0,
 		 data_in => SYNTHESIZED_WIRE_1,
-		 data_out => data_out);
+		 data_out => SYNTHESIZED_WIRE_3);
 
 
-b2v_inst2 : d_reg
+b2v_Baud : clock_generator
+GENERIC MAP(baudrate => 5208
+			)
+PORT MAP(clk_source => source_clk,
+		 freq_sel => freq_sel,
+		 rst => rst,
+		 clk_baud => baud_clk);
+
+
+b2v_data : d_reg
 GENERIC MAP(size => 8
 			)
 PORT MAP(clk => baud_clk,
 		 rst => rst,
 		 load => da,
 		 data_in => SYNTHESIZED_WIRE_2,
-		 data_out => SYNTHESIZED_WIRE_1);
+		 data_out => SYNTHESIZED_WIRE_4);
 
 
-SYNTHESIZED_WIRE_3 <= NOT(da);
-
-
-
-b2v_inst4 : d_reg
-GENERIC MAP(size => 8
+b2v_inst10 : dual_port_ram
+GENERIC MAP(ADDR_WIDTH => 8,
+			DATA_WIDTH => 8
 			)
-PORT MAP(clk => baud_clk,
-		 rst => rst,
-		 load => SYNTHESIZED_WIRE_3,
+PORT MAP(clk => source_clk,
+		 rstn => rst,
+		 we => we,
+		 address => SYNTHESIZED_WIRE_3,
 		 data_in => SYNTHESIZED_WIRE_4,
-		 data_out => SYNTHESIZED_WIRE_0);
+		 data_out => data_out);
 
 
-b2v_inst5 : interpreter
+
+SYNTHESIZED_WIRE_0 <= NOT(da);
+
+
+
+b2v_parser : interpreter
 GENERIC MAP(size => 8
 			)
 PORT MAP(clk => baud_clk,
@@ -133,9 +153,9 @@ PORT MAP(clk => baud_clk,
 		 data_in => data_in,
 		 da => da,
 		 we => we,
-		 address_out => SYNTHESIZED_WIRE_4,
+		 address_out => SYNTHESIZED_WIRE_1,
 		 data_out => SYNTHESIZED_WIRE_2);
 
-baud_clk <= clk;
+
 
 END bdf_type;
