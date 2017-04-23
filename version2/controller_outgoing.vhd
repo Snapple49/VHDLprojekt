@@ -10,7 +10,7 @@ entity controller_outgoing is
 		data_in		: in std_logic_vector (7 downto 0); -- data from memory
 		send			: out std_logic := '0'; -- enable outgoing shift register
 		data_rdy		: in std_logic := '0'; --data is ready to be sent
-		rst			: in std_logic := '1';
+		rst			: in std_logic;
 		load			: out std_logic_vector (7 downto 0) -- load data into outgoing shift register
 	);
 
@@ -20,14 +20,14 @@ architecture rtl of controller_outgoing is
 
 type state is (idle, sending, waiting);
 
-signal counter_tr : std_logic_vector(2 downto 0) := "000";
+signal counter_tr : std_logic_vector(7 downto 0) := "00000000";
 signal c_state : state;
 begin
 
 	process (clk_baud16, rst)
 	begin
 		if (rst = '0') then
-			counter_tr <= "000";
+			counter_tr <= "00000000";
 			c_state <= idle;
 
 		elsif rising_edge(clk_baud16) then
@@ -41,8 +41,8 @@ begin
 					
 					send <= '1';
 					counter_tr <= counter_tr + 1;
-					if (counter_tr = "111") then
-						counter_tr <= "000";
+					if (counter_tr = "10100000") then
+						counter_tr <= "00000000";
 						c_state <= waiting;
 					else
 						c_state <= sending;
@@ -50,6 +50,7 @@ begin
 				
 				when waiting =>
 					
+					send <= '0';
 					if (data_rdy = '1') then
 						load <= data_in;
 						c_state <= sending;
