@@ -6,7 +6,7 @@ entity controller_outgoing is
 
 	port 
 	(
-		clk_baud		: in std_logic;
+		clk_baud16		: in std_logic;
 		data_in		: in std_logic_vector (7 downto 0); -- data from memory
 		send			: out std_logic := '0'; -- enable outgoing shift register
 		data_rdy		: in std_logic := '0'; --data is ready to be sent
@@ -20,24 +20,17 @@ architecture rtl of controller_outgoing is
 
 type state is (idle, sending, waiting);
 
-signal counter_sb : std_logic_vector(2 downto 0) := "000";
-signal counter_tr : std_logic_vector(3 downto 0) := "0000";
-signal c_state : state := idle;
-signal state_clk : std_logic := clk_baud16;
+signal counter_tr : std_logic_vector(2 downto 0) := "000";
+signal c_state : state;
 begin
 
-	process (clk_baud, rst)
+	process (clk_baud16, rst)
 	begin
 		if (rst = '0') then
-			clk_rst <= '0';
-			clk_rst16 <= '0';
-			counter_sb <= "000";
-			counter_tr <= "0000";
-			wrt_reg <= '0';
-			state_clk <= clk_baud16;
+			counter_tr <= "000";
 			c_state <= idle;
 
-		elsif rising_edge(clk_baud) then
+		elsif rising_edge(clk_baud16) then
 		
 			case c_state is
 				when idle =>
@@ -46,24 +39,23 @@ begin
 				
 				when sending =>
 					
-					
-				
+					send <= '1';
+					counter_tr <= counter_tr + 1;
+					if (counter_tr = "111") then
+						counter_tr <= "000";
+						c_state <= waiting;
+					else
+						c_state <= sending;
+					end if;
 				
 				when waiting =>
 					
-					state_clk <= clk_baud16;
-					clk_rst <= '0';
-					if (counter_sb = "111") then
-						counter_sb <= "000";
-						clk_rst <= '1';
-						c_state <= reading;
-					elsif (RX_in = '0') then
-						counter_sb <= counter_sb + 1;
-					elsif (RX_in = '1') then
-						counter_sb <= "000";
+					if (data_rdy = '1') then
+						load <= data_in;
+						c_state <= sending;
+					else
+						c_state <= waiting;
 					end if;
-					c_state <= waiting;
-					
 				when others =>
 					c_state <= idle;
 					
