@@ -14,7 +14,7 @@
 
 -- PROGRAM		"Quartus II 64-Bit"
 -- VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
--- CREATED		"Sun Apr 23 17:33:15 2017"
+-- CREATED		"Mon Apr 24 16:34:09 2017"
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all; 
@@ -29,6 +29,7 @@ ENTITY mem_component IS
 		source_clk :  IN  STD_LOGIC;
 		freq_sel :  IN  STD_LOGIC;
 		data_in :  IN  STD_LOGIC_VECTOR(7 DOWNTO 0);
+		TX_enable :  OUT  STD_LOGIC;
 		data_out :  OUT  STD_LOGIC_VECTOR(7 DOWNTO 0)
 	);
 END mem_component;
@@ -87,8 +88,8 @@ END COMPONENT;
 SIGNAL	baud_clk :  STD_LOGIC;
 SIGNAL	da :  STD_LOGIC;
 SIGNAL	we :  STD_LOGIC;
-SIGNAL	SYNTHESIZED_WIRE_0 :  STD_LOGIC;
-SIGNAL	SYNTHESIZED_WIRE_1 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_0 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_1 :  STD_LOGIC;
 SIGNAL	SYNTHESIZED_WIRE_2 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_3 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_4 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
@@ -103,8 +104,8 @@ GENERIC MAP(size => 8
 			)
 PORT MAP(clk => baud_clk,
 		 rst => rst,
-		 load => SYNTHESIZED_WIRE_0,
-		 data_in => SYNTHESIZED_WIRE_1,
+		 load => da,
+		 data_in => SYNTHESIZED_WIRE_0,
 		 data_out => SYNTHESIZED_WIRE_3);
 
 
@@ -117,12 +118,16 @@ PORT MAP(clk_source => source_clk,
 		 clk_baud => baud_clk);
 
 
+SYNTHESIZED_WIRE_1 <= NOT(da);
+
+
+
 b2v_data : d_reg
 GENERIC MAP(size => 8
 			)
 PORT MAP(clk => baud_clk,
 		 rst => rst,
-		 load => da,
+		 load => SYNTHESIZED_WIRE_1,
 		 data_in => SYNTHESIZED_WIRE_2,
 		 data_out => SYNTHESIZED_WIRE_4);
 
@@ -139,11 +144,6 @@ PORT MAP(clk => source_clk,
 		 data_out => data_out);
 
 
-
-SYNTHESIZED_WIRE_0 <= NOT(da);
-
-
-
 b2v_parser : interpreter
 GENERIC MAP(size => 8
 			)
@@ -153,9 +153,9 @@ PORT MAP(clk => baud_clk,
 		 data_in => data_in,
 		 da => da,
 		 we => we,
-		 address_out => SYNTHESIZED_WIRE_1,
+		 TX_enable => TX_enable,
+		 address_out => SYNTHESIZED_WIRE_0,
 		 data_out => SYNTHESIZED_WIRE_2);
-
 
 
 END bdf_type;
