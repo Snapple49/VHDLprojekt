@@ -61,9 +61,16 @@ applicable agreement for further details.
 	(port
 		(pt 208 32)
 		(output)
+		(text "TX_enable" (rect 0 0 42 12)(font "Arial" ))
+		(text "TX_enable" (rect 145 27 187 39)(font "Arial" ))
+		(line (pt 208 32)(pt 192 32)(line_width 1))
+	)
+	(port
+		(pt 208 48)
+		(output)
 		(text "data_out[7..0]" (rect 0 0 54 12)(font "Arial" ))
-		(text "data_out[7..0]" (rect 133 27 187 39)(font "Arial" ))
-		(line (pt 208 32)(pt 192 32)(line_width 3))
+		(text "data_out[7..0]" (rect 133 43 187 55)(font "Arial" ))
+		(line (pt 208 48)(pt 192 48)(line_width 3))
 	)
 	(drawing
 		(rectangle (rect 16 16 192 128)(line_width 1))
