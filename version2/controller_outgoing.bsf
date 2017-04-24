@@ -65,6 +65,20 @@ applicable agreement for further details.
 		(text "load[7..0]" (rect 128 43 163 55)(font "Arial" ))
 		(line (pt 184 48)(pt 168 48)(line_width 3))
 	)
+	(port
+		(pt 184 64)
+		(output)
+		(text "tx_rst" (rect 0 0 23 12)(font "Arial" ))
+		(text "tx_rst" (rect 140 59 163 71)(font "Arial" ))
+		(line (pt 184 64)(pt 168 64)(line_width 1))
+	)
+	(port
+		(pt 184 80)
+		(output)
+		(text "clk_rst" (rect 0 0 27 12)(font "Arial" ))
+		(text "clk_rst" (rect 136 75 163 87)(font "Arial" ))
+		(line (pt 184 80)(pt 168 80)(line_width 1))
+	)
 	(drawing
 		(rectangle (rect 16 16 168 96)(line_width 1))
 	)

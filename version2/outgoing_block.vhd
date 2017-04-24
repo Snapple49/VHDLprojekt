@@ -14,7 +14,7 @@
 
 -- PROGRAM		"Quartus II 64-Bit"
 -- VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
--- CREATED		"Sun Apr 23 21:58:18 2017"
+-- CREATED		"Mon Apr 24 16:37:20 2017"
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all; 
@@ -43,6 +43,8 @@ COMPONENT controller_outgoing
 		 rst : IN STD_LOGIC;
 		 data_in : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
 		 send : OUT STD_LOGIC;
+		 tx_rst : OUT STD_LOGIC;
+		 clk_rst : OUT STD_LOGIC;
 		 load : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
 	);
 END COMPONENT;
@@ -74,11 +76,13 @@ COMPONENT tx_reg
 END COMPONENT;
 
 SIGNAL	clk_baud16 :  STD_LOGIC;
+SIGNAL	clk_rst :  STD_LOGIC;
 SIGNAL	tx_mux :  STD_LOGIC_VECTOR(1 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_0 :  STD_LOGIC;
 SIGNAL	SYNTHESIZED_WIRE_1 :  STD_LOGIC;
 SIGNAL	SYNTHESIZED_WIRE_2 :  STD_LOGIC;
-SIGNAL	SYNTHESIZED_WIRE_3 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
+SIGNAL	SYNTHESIZED_WIRE_3 :  STD_LOGIC;
+SIGNAL	SYNTHESIZED_WIRE_4 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
 
 
 BEGIN 
@@ -91,7 +95,9 @@ PORT MAP(clk_baud16 => clk_baud16,
 		 rst => rst_all,
 		 data_in => data_in,
 		 send => SYNTHESIZED_WIRE_2,
-		 load => SYNTHESIZED_WIRE_3);
+		 tx_rst => SYNTHESIZED_WIRE_3,
+		 clk_rst => clk_rst,
+		 load => SYNTHESIZED_WIRE_4);
 
 
 b2v_inst1 : clock_generator
@@ -99,7 +105,7 @@ GENERIC MAP(baudrate => 5208
 			)
 PORT MAP(clk_source => src_clock,
 		 freq_sel => freq_sel,
-		 rst => rst_all,
+		 rst => clk_rst,
 		 clk_baud => clk_baud16);
 
 
@@ -125,8 +131,8 @@ SYNTHESIZED_WIRE_0 <= NOT(freq_sel);
 b2v_inst4 : tx_reg
 PORT MAP(clk_baud => SYNTHESIZED_WIRE_1,
 		 sending => SYNTHESIZED_WIRE_2,
-		 rst => rst_all,
-		 par_in => SYNTHESIZED_WIRE_3,
+		 rst => SYNTHESIZED_WIRE_3,
+		 par_in => SYNTHESIZED_WIRE_4,
 		 sr_out => tx_mux(0));
 
 
