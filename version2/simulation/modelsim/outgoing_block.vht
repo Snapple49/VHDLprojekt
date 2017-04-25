@@ -80,7 +80,7 @@ BEGIN
 	data_ready <= '1';
 	wait for 13000 ns;
 	data_ready <= '0';
-	wait for 1500000 ns;
+	wait for 1400000 ns;
 	data_in <= "11101010";
 	data_ready <= '1';
 	wait for 13000 ns;

@@ -27,7 +27,7 @@ architecture rtl of tx_reg is
 
 begin
 
-	process (clk_baud, rst, sending, par_in)
+	process (clk_baud, rst, par_in)
 	begin
 		if (rst = '0') then
 			sr <= "1111111111";
@@ -36,11 +36,11 @@ begin
 				sr(8 downto 1) <= par_in;
 				sr(0) <= '1';
 				sr(9) <= '0';
-			elsif ((rising_edge(clk_baud)) and sending = '1') then
+			elsif ((falling_edge(clk_baud)) and sending = '1') then
 				sr <= sr(8 downto 0) & '1';
 			end if;
 		end if;
 	end process;
-	sr_out <= sr(9);
+	sr_out <= sr(9) when (sending = '1') else '1';
 
 end rtl;

@@ -43,10 +43,11 @@ begin
 				when sending =>
 					
 					send <= '1';
+					clk_rst <= '1';
 					counter_tr <= counter_tr + 1;
 					if (counter_tr = "10101000") then
 						counter_tr <= "00000000";
-						load <= "11111111";
+						--load <= "11111111";
 						tx_rst <= '0';
 						c_state <= waiting;
 					else
@@ -60,7 +61,6 @@ begin
 					send <= '0';
 					if (data_rdy = '1') then
 						load <= data_in;
-						clk_rst <= '1';
 						c_state <= sending;
 					else
 						c_state <= waiting;

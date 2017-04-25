@@ -14,7 +14,7 @@
 
 -- PROGRAM		"Quartus II 64-Bit"
 -- VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
--- CREATED		"Mon Apr 24 16:37:20 2017"
+-- CREATED		"Tue Apr 25 11:28:41 2017"
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all; 
@@ -105,7 +105,7 @@ GENERIC MAP(baudrate => 5208
 			)
 PORT MAP(clk_source => src_clock,
 		 freq_sel => freq_sel,
-		 rst => clk_rst,
+		 rst => rst_all,
 		 clk_baud => clk_baud16);
 
 
@@ -120,7 +120,7 @@ GENERIC MAP(baudrate => 5208
 			)
 PORT MAP(clk_source => src_clock,
 		 freq_sel => SYNTHESIZED_WIRE_0,
-		 rst => rst_all,
+		 rst => clk_rst,
 		 clk_baud => SYNTHESIZED_WIRE_1);
 
 
