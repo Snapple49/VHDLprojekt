@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_unsigned.all;
 
-entity controller is
+entity controller_receiver is
 
 	port 
 	(
@@ -13,12 +13,14 @@ entity controller is
 		clk_rst16 	: out std_logic := '1';
 		wrt_reg		: out std_logic := '0';
 		rst			: in std_logic := '1';
+		freq_sel		: out std_logic := '1';
+		inv_en		: out std_logic := '1';
 		data_rdy		: out std_logic := '0'
 	);
 
 end entity;
 
-architecture rtl of controller is
+architecture rtl of controller_receiver is
 
 type state is (idle, reading, waiting);
 
@@ -32,8 +34,6 @@ begin
 	process (state_clk, rst)
 	begin
 		if (rst = '0') then
-			--clk_rst <= '0';
-			--clk_rst16 <= '0';
 			counter_sb <= "000";
 			counter_rd <= "0000";
 			wrt_reg <= '0';
@@ -94,56 +94,7 @@ begin
 			state_clk <= clk_baud;
 		end if;
 	end process;
-	
-	
 
+freq_sel <= '1';
+inv_en <= '1';
 end rtl;
-
-
---/*
---
---
---
---begin
---	process(clk_baud16, reading)
---	begin
---		if (reading = '0') then
---			clk_rst <= '1';
---			if (rising_edge(clk_baud16)) then
---				if (RX_in = '0') then
---					counter8a <= counter8a + 1;
---				elsif(RX_in = '1') then
---					counter8a <= "000";
---				end if;
---			end if;
---		elsif (reading = '1') then
---			clk_rst <= '0'; --clk_rst16 <= 1??
---			
---		end if;
---	end process;
---	
---	process(clk_baud, reading)
---	begin
---		if (reading = '1') then
---			if falling_edge(clk_baud) then
---				wrt_reg <= '1';
---				if (counter8b = "1001") then
---					counter8b <= "0000";
---				else
---					counter8b <= counter8b + 1;
---				end if;
---			end if;
---		end if;
--- 	end process;
---	
---	process(counter8a, counter8b)
---	begin
---		if(counter8a = "111")then
---			reading <= '1';
---		end if;
---		if(counter8b = "1001")then
---			reading <= '0';
---		end if;
---	end process; */
-
-

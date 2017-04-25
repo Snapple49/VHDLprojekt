@@ -18,6 +18,7 @@ entity interpreter is
 		address_out : out std_logic_vector((size-1) downto 0);
 		da				: out std_logic; -- data (1) or address (0)
 		we				: out std_logic; -- write enable
+		freq_sel		: out std_logic;
 		TX_enable	: out std_logic --enable?
 	);
 	
@@ -112,4 +113,5 @@ begin
 			end case;
 		end if;
 	end process;
+freq_sel <= '1';
 end rtl;	

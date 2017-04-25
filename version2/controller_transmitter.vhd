@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_unsigned.all;
 
-entity controller_outgoing is
+entity controller_transmitter is
 
 	port 
 	(
@@ -12,12 +12,13 @@ entity controller_outgoing is
 		data_rdy		: in std_logic := '0'; --data is ready to be sent
 		rst			: in std_logic;
 		load			: out std_logic_vector (7 downto 0); -- load data into outgoing shift register
+		inv_en, freq_sel	: out std_logic;
 		tx_rst, clk_rst	: out std_logic
 	);
 
 end entity;
 
-architecture rtl of controller_outgoing is
+architecture rtl of controller_transmitter is
 
 type state is (idle, sending, waiting);
 
@@ -72,6 +73,7 @@ begin
 		end if;
 	end process;
 
-
+inv_en <= '1';
+freq_sel <= '1';
 
 end rtl;
