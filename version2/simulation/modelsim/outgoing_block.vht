@@ -72,11 +72,16 @@ always : PROCESS
 -- variable declarations                                      
 BEGIN
 	
-	RX_loopback <= '1';
+	RX_loopback <= '0';
 	data_ready <= '0';
 	wait for 1000 ns;
 	data_in <= "01000001";
 	wait for 10 ns;
+	data_ready <= '1';
+	wait for 13000 ns;
+	data_ready <= '0';
+	wait for 1400000 ns;
+	data_in <= "11101010";
 	data_ready <= '1';
 	wait for 13000 ns;
 	data_ready <= '0';

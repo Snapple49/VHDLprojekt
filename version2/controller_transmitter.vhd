@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_unsigned.all;
 
-entity controller_outgoing is
+entity controller_transmitter is
 
 	port 
 	(
@@ -11,12 +11,14 @@ entity controller_outgoing is
 		send			: out std_logic := '0'; -- enable outgoing shift register
 		data_rdy		: in std_logic := '0'; --data is ready to be sent
 		rst			: in std_logic;
-		load			: out std_logic_vector (7 downto 0) -- load data into outgoing shift register
+		load			: out std_logic_vector (7 downto 0); -- load data into outgoing shift register
+		inv_en, freq_sel	: out std_logic;
+		tx_rst, clk_rst	: out std_logic
 	);
 
 end entity;
 
-architecture rtl of controller_outgoing is
+architecture rtl of controller_transmitter is
 
 type state is (idle, sending, waiting);
 
@@ -28,6 +30,8 @@ begin
 	begin
 		if (rst = '0') then
 			counter_tr <= "00000000";
+			tx_rst <= '0';
+			clk_rst <= '0';
 			c_state <= idle;
 
 		elsif rising_edge(clk_baud16) then
@@ -40,9 +44,12 @@ begin
 				when sending =>
 					
 					send <= '1';
+					clk_rst <= '1';
 					counter_tr <= counter_tr + 1;
-					if (counter_tr = "10100000") then
+					if (counter_tr = "10101000") then
 						counter_tr <= "00000000";
+						--load <= "11111111";
+						tx_rst <= '0';
 						c_state <= waiting;
 					else
 						c_state <= sending;
@@ -50,6 +57,8 @@ begin
 				
 				when waiting =>
 					
+					clk_rst <= '0';
+					tx_rst <= '1';
 					send <= '0';
 					if (data_rdy = '1') then
 						load <= data_in;
@@ -64,6 +73,7 @@ begin
 		end if;
 	end process;
 
-
+inv_en <= '1';
+freq_sel <= '1';
 
 end rtl;

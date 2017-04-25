@@ -14,7 +14,7 @@
 
 -- PROGRAM		"Quartus II 64-Bit"
 -- VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition"
--- CREATED		"Mon Apr 24 16:34:09 2017"
+-- CREATED		"Tue Apr 25 18:35:24 2017"
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all; 
@@ -22,13 +22,11 @@ USE ieee.std_logic_1164.all;
 LIBRARY work;
 
 ENTITY mem_component IS 
-
 	PORT
 	(
 		rst :  IN  STD_LOGIC;
 		RX_ready :  IN  STD_LOGIC;
 		source_clk :  IN  STD_LOGIC;
-		freq_sel :  IN  STD_LOGIC;
 		data_in :  IN  STD_LOGIC_VECTOR(7 DOWNTO 0);
 		TX_enable :  OUT  STD_LOGIC;
 		data_out :  OUT  STD_LOGIC_VECTOR(7 DOWNTO 0)
@@ -80,6 +78,7 @@ GENERIC (size : INTEGER
 		 data_in : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
 		 da : OUT STD_LOGIC;
 		 we : OUT STD_LOGIC;
+		 freq_sel : OUT STD_LOGIC;
 		 TX_enable : OUT STD_LOGIC;
 		 address_out : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
 		 data_out : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
@@ -88,6 +87,7 @@ END COMPONENT;
 
 SIGNAL	baud_clk :  STD_LOGIC;
 SIGNAL	da :  STD_LOGIC;
+SIGNAL	freq_sel :  STD_LOGIC;
 SIGNAL	we :  STD_LOGIC;
 SIGNAL	SYNTHESIZED_WIRE_0 :  STD_LOGIC_VECTOR(7 DOWNTO 0);
 SIGNAL	SYNTHESIZED_WIRE_1 :  STD_LOGIC;
@@ -154,6 +154,7 @@ PORT MAP(clk => baud_clk,
 		 data_in => data_in,
 		 da => da,
 		 we => we,
+		 freq_sel => freq_sel,
 		 TX_enable => TX_enable,
 		 address_out => SYNTHESIZED_WIRE_0,
 		 data_out => SYNTHESIZED_WIRE_2);

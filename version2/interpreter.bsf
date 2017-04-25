@@ -82,9 +82,16 @@ applicable agreement for further details.
 	(port
 		(pt 248 96)
 		(output)
-		(text "TX_enable" (rect 0 0 42 12)(font "Arial" ))
-		(text "TX_enable" (rect 185 91 227 103)(font "Arial" ))
+		(text "freq_sel" (rect 0 0 33 12)(font "Arial" ))
+		(text "freq_sel" (rect 194 91 227 103)(font "Arial" ))
 		(line (pt 248 96)(pt 232 96)(line_width 1))
+	)
+	(port
+		(pt 248 112)
+		(output)
+		(text "TX_enable" (rect 0 0 42 12)(font "Arial" ))
+		(text "TX_enable" (rect 185 107 227 119)(font "Arial" ))
+		(line (pt 248 112)(pt 232 112)(line_width 1))
 	)
 	(parameter
 		"size"

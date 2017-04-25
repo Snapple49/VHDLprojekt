@@ -20,9 +20,9 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.1"))
 (symbol
-	(rect 16 16 200 128)
-	(text "controller_outgoing" (rect 5 0 78 12)(font "Arial" ))
-	(text "inst" (rect 8 96 20 108)(font "Arial" ))
+	(rect 16 16 200 160)
+	(text "controller_transmitter" (rect 5 0 88 12)(font "Arial" ))
+	(text "inst" (rect 8 128 20 140)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -68,18 +68,32 @@ applicable agreement for further details.
 	(port
 		(pt 184 64)
 		(output)
-		(text "tx_rst" (rect 0 0 23 12)(font "Arial" ))
-		(text "tx_rst" (rect 140 59 163 71)(font "Arial" ))
+		(text "inv_en" (rect 0 0 27 12)(font "Arial" ))
+		(text "inv_en" (rect 136 59 163 71)(font "Arial" ))
 		(line (pt 184 64)(pt 168 64)(line_width 1))
 	)
 	(port
 		(pt 184 80)
 		(output)
-		(text "clk_rst" (rect 0 0 27 12)(font "Arial" ))
-		(text "clk_rst" (rect 136 75 163 87)(font "Arial" ))
+		(text "freq_sel" (rect 0 0 33 12)(font "Arial" ))
+		(text "freq_sel" (rect 130 75 163 87)(font "Arial" ))
 		(line (pt 184 80)(pt 168 80)(line_width 1))
 	)
+	(port
+		(pt 184 96)
+		(output)
+		(text "tx_rst" (rect 0 0 23 12)(font "Arial" ))
+		(text "tx_rst" (rect 140 91 163 103)(font "Arial" ))
+		(line (pt 184 96)(pt 168 96)(line_width 1))
+	)
+	(port
+		(pt 184 112)
+		(output)
+		(text "clk_rst" (rect 0 0 27 12)(font "Arial" ))
+		(text "clk_rst" (rect 136 107 163 119)(font "Arial" ))
+		(line (pt 184 112)(pt 168 112)(line_width 1))
+	)
 	(drawing
-		(rectangle (rect 16 16 168 96)(line_width 1))
+		(rectangle (rect 16 16 168 128)(line_width 1))
 	)
 )
