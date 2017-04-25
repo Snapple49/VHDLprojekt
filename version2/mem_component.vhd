@@ -22,6 +22,7 @@ USE ieee.std_logic_1164.all;
 LIBRARY work;
 
 ENTITY mem_component IS 
+
 	PORT
 	(
 		rst :  IN  STD_LOGIC;
